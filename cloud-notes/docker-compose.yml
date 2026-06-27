@@ -1,0 +1,15 @@
+services:
+  cloud-notes:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:9
+    environment:
+      MYSQL_ROOT_PASSWORD: suryaa123
+      MYSQL_DATABASE: cloudlab
+    ports:
+      - "3306:3306"
