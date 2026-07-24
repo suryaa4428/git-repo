@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{{ theme }}">
+
+<div class="container">
+
+    <h1>☁️ Cloud Notes</h1>
+
+    <div class="top-links">
+        <a href="/toggle_theme">
+    {% if theme == "light" %}
+        🌙 Dark Mode
+    {% else %}
+        ☀️ Light Mode
+    {% endif %}
+</a>
+        <a href="/profile">👤 Profile</a>
+        <a href="/trash">🗑 Trash</a>
+        <a href="/change_password">🔑 Change Password</a>
+        <a href="/logout">🚪 Logout</a>
+    </div>
+
+    <br>
+
+    <!-- Search -->
+    <form method="GET" action="/">
+    <button type="submit" name="favorites" value="1">
+        ⭐ Show Favorites
+    </button>
+
+    <button type="submit">
+        📄 Show All
+    </button>
+</form>
+
+<br>
+
+    <form method="GET" action="/">
+        <input
+            type="text"
+            name="search"
+            placeholder="Search notes..."
+            value="{{ search }}">
+
+        <button type="submit">Search</button>
+    </form>
+
+    <br>
+
+    <!-- Add Note -->
+
+    <form method="POST"
+          action="/add"
+          enctype="multipart/form-data">
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Title">
+
+        <br><br>
+
+        <textarea
+            name="note"
+            rows="5"
+            placeholder="Write your note..."
+            required></textarea>
+            
+
+        <br><br>
+
+        <select name="category">
+            <option value="General">📝 General</option>
+            <option value="Work">💼 Work</option>
+            <option value="Study">📚 Study</option>
+            <option value="Personal">❤️ Personal</option>
+        </select>
+
+        <br><br>
+
+        <input
+            type="file"
+            name="file"
+            accept=".png,.jpg,.jpeg,.gif,.pdf">
+
+        <br><br>
+
+        <button type="submit">
+            Add Note
+        </button>
+
+    </form>
+
+    <br>
+
+    {% for note in notes %}
+
+    <div class="note">
+
+        <h2>{{ note[4] if note[4] else "Untitled" }}</h2>
+
+        <p><b>Category:</b> {{ note[6] }}</p>
+        {% if note.attachment %}
+<p>
+    📎
+    <a href="{{ url_for('static', filename='uploads/' + note.attachment) }}"
+       target="_blank">
+        {{ note.attachment }}
+    </a>
+</p>
+{% endif %}
+
+        <!-- Pin -->
+        
+        <form action="/favorite/{{ note[0] }}" method="POST">
+    <button type="submit">
+        {% if note[7] %}
+            ⭐ Unfavorite
+        {% else %}
+            ☆ Favorite
+        {% endif %}
+    </button>
+</form>
+
+<br>
+
+        <form action="/pin/{{ note[0] }}" method="POST">
+
+            <button type="submit">
+
+                {% if note[5] %}
+                    📍 Unpin
+                {% else %}
+                    📌 Pin
+                {% endif %}
+
+            </button>
+
+        </form>
+
+        <br>
+
+        <!-- Edit -->
+
+        <form
+            action="/edit/{{ note[0] }}"
+            method="POST">
+
+            <input
+                type="text"
+                name="title"
+                value="{{ note[4] if note[4] else '' }}"
+                placeholder="Title">
+
+            <br><br>
+
+            <textarea
+                name="note"
+                rows="5"
+                required>{{ note[1] }}</textarea>
+
+            <br><br>
+
+            <select name="category">
+
+                <option value="General"
+                {% if note[6]=="General" %}selected{% endif %}>
+                📝 General
+                </option>
+
+                <option value="Work"
+                {% if note[6]=="Work" %}selected{% endif %}>
+                💼 Work
+                </option>
+
+                <option value="Study"
+                {% if note[6]=="Study" %}selected{% endif %}>
+                📚 Study
+                </option>
+
+                <option value="Personal"
+                {% if note[6]=="Personal" %}selected{% endif %}>
+                ❤️ Personal
+                </option>
+
+            </select>
+
+            <br><br>
+
+            {% if note[7] %}
+
+                {% if note[7].endswith(".pdf") %}
+
+                    <a href="{{ url_for('static', filename='uploads/' + note[7]) }}" target="_blank">
+                        📄 View PDF
+                    </a>
+
+                {% else %}
+
+                    <img
+                        src="{{ url_for('static', filename='uploads/' + note[7]) }}"
+                        width="250"
+                        style="border-radius:10px;">
+
+                {% endif %}
+
+                <br><br>
+
+            {% endif %}
+
+            <button type="submit">
+                💾 Save
+            </button>
+
+        </form>
+
+        <br>
+
+        <small>{{ note[2] }}</small>
+
+        <br><br>
+
+        <!-- Delete -->
+
+        <form
+            action="/delete/{{ note[0] }}"
+            method="POST">
+
+            <button
+                class="delete-btn"
+                type="submit">
+
+                🗑 Delete
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <br>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

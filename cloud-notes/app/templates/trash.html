@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Trash</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🗑 Trash</h1>
+
+<a href="/">🏠 Home</a>
+
+<br><br>
+
+{% for note in notes %}
+
+<div class="note">
+
+<h2>{{ note[4] }}</h2>
+
+<p>{{ note[1] }}</p>
+
+<small>{{ note[2] }}</small>
+
+<br><br>
+
+<form action="/restore/{{ note[0] }}" method="POST">
+
+<button type="submit">
+
+♻ Restore
+
+</button>
+
+</form>
+
+<br>
+
+<form action="/delete_forever/{{ note[0] }}" method="POST">
+
+<button class="delete-btn" type="submit">
+
+❌ Delete Forever
+
+</button>
+
+</form>
+
+</div>
+
+<br>
+
+{% endfor %}
+
+</div>
+
+</body>
+
+</html>

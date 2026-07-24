@@ -1,0 +1,246 @@
+/* ---------- Body ---------- */
+
+body{
+    margin:0;
+    padding:0;
+    background:#eef2f7;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* ---------- Main Container ---------- */
+
+.container{
+    width:500px;
+    max-width:90%;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+/* ---------- Heading ---------- */
+
+h1{
+    text-align:center;
+    color:#222;
+    margin-bottom:20px;
+}
+
+/* ---------- Links ---------- */
+
+.top-links{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.top-links a{
+    text-decoration:none;
+    margin:0 10px;
+    color:#0d8bff;
+    font-weight:bold;
+}
+
+.top-links a:hover{
+    color:#005ecb;
+}
+
+/* ---------- Inputs ---------- */
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    box-sizing:border-box;
+    font-size:16px;
+}
+
+/* ---------- Buttons ---------- */
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#0d8bff;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#006de0;
+}
+
+/* ---------- Delete Button ---------- */
+
+.delete-btn{
+    background:#e53935;
+}
+
+.delete-btn:hover{
+    background:#c62828;
+}
+
+/* ---------- Notes ---------- */
+
+.note{
+    margin-top:20px;
+    padding:15px;
+    background:#fafafa;
+    border-left:5px solid #0d8bff;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
+
+.note h3{
+    margin:0;
+    color:#333;
+}
+
+.note p{
+    margin:10px 0;
+    color:#555;
+}
+
+.time{
+    color:gray;
+    font-size:14px;
+}
+
+/* ---------- Horizontal Line ---------- */
+
+hr{
+    border:none;
+    border-top:1px solid #ddd;
+    margin:20px 0;
+}
+
+/* ---------- Links ---------- */
+
+a{
+    color:#0d8bff;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+/* ---------- Login/Register Card ---------- */
+
+.auth-box{
+    width:420px;
+    max-width:90%;
+    margin:70px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.auth-box h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:600px){
+
+.container{
+    width:95%;
+    padding:20px;
+}
+
+.auth-box{
+    width:95%;
+}
+
+}
+textarea{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    resize:vertical;
+    margin-bottom:15px;
+    font-size:16px;
+}
+
+.note h2{
+    color:#2196F3;
+    margin-bottom:10px;
+}
+/* ===========================
+   DARK MODE
+=========================== */
+
+body.dark {
+    background: #121212;
+    color: #f5f5f5;
+}
+
+body.dark .container {
+    background: #1e1e1e;
+    color: white;
+}
+
+body.dark .note {
+    background: #2a2a2a;
+    color: white;
+    border-left: 5px solid #00bcd4;
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+    background: #333333;
+    color: white;
+    border: 1px solid #555555;
+}
+
+body.dark button {
+    background: #00bcd4;
+    color: white;
+}
+
+body.dark a {
+    color: #4fc3f7;
+}
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark p,
+body.dark label,
+body.dark small,
+body.dark span {
+    color: white;
+}
+
+body.dark form {
+    background: #1e1e1e;
+}
+
+body.dark img {
+    border-radius: 10px;
+}
+
+body.dark hr {
+    border-color: #555;
+}
+
+body.dark table {
+    color: white;
+}
+
+body.dark td,
+body.dark th {
+    border-color: #555;
+}
