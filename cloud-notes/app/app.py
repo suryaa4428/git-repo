@@ -81,7 +81,7 @@ def add_note_submit():
     if note.strip() == "":
         return redirect("/")
 
-    filename+ = None
+    filename = None
 
     if "file" in request.files:
         file = request.files["file"]
