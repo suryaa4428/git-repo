@@ -17,10 +17,11 @@ app.secret_key = os.environ.get("SECRET_KEY", "cloudnotes_secret_key")
 
 def get_db():
     return mysql.connector.connect(
-        host=os.environ.get("DB_HOST", "mysql"),
-        user=os.environ.get("DB_USER", "root"),
-        password=os.environ.get("DB_PASSWORD", "suryaa123"),
-        database=os.environ.get("DB_NAME", "cloudlab"),
+        host=os.environ.get("MYSQLHOST"),
+        user=os.environ.get("MYSQLUSER"),
+        password=os.environ.get("MYSQLPASSWORD"),
+        database=os.environ.get("MYSQLDATABASE"),
+        port=int(os.environ.get("MYSQLPORT", 3306))
     )
 
 
