@@ -5,13 +5,19 @@ services:
       - "5000:5000"
     depends_on:
       - mysql
+    environment:
+      MYSQLHOST: mysql
+      MYSQLPORT: 3306
+      MYSQLDATABASE: cloudlab
+      MYSQLUSER: root
+      MYSQLPASSWORD: EAivVhxGeeZpZbHgtsadLlJBucefCaOZ
     volumes:
       - ./app/static/uploads:/app/static/uploads
 
   mysql:
     image: mysql:9
     environment:
-      MYSQL_ROOT_PASSWORD: suryaa123
+      MYSQL_ROOT_PASSWORD: YOUR_PASSWORD_HERE
       MYSQL_DATABASE: cloudlab
     ports:
       - "3306:3306"
