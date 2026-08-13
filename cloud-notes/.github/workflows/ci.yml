@@ -1,4 +1,4 @@
-name: Cloud Notes CI
+name: Cloud Notes CI/CD
 
 on:
   push:
@@ -29,3 +29,11 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t cloud-notes .
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway
+        run: railway up --ci
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
